@@ -1,0 +1,15 @@
+<% puts "inside index.html.erb 999999999999999999999999999999"%>
+
+
+
+<% @data = {current_user: @current_user, 
+            test_string: @test_string, 
+            
+            lastStory: @lastStory, 
+            secondToLastStory: @secondToLastStory, 
+            thirdToLastStory: @thirdToLastStory, 
+            fourthToLastStory: @fourthToLastStory, 
+            fromPath: @path,
+            artData: @seeIfStoryExists} %>
+
+<%= react_component("App", props: {d: @data}, prerender: true) %>

@@ -1,0 +1,17 @@
+.HeaderWrapper {
+	position: relative;
+	display: grid;
+	grid-template-columns: minmax(100px, 200px) 1fr minmax(100px, max-content);
+	grid-template-rows: 85px;
+	grid-template-areas: "headerLogo . headerLeaf ";
+	min-width: 100vw;
+	max-width: 3000px;
+	overflow: hidden;
+	grid-gap: 8px;
+	z-index: 52;
+}
+
+.h1 {
+	color: green;
+	font-size: 6em;
+}

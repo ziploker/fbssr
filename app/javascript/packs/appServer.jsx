@@ -4,7 +4,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { StaticRouter } from "react-router-dom/server";
 //import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 //import axios from "axios";
-import Header from "./header";
+import HeaderSection from "./HeaderSection";
 //import Home from "./home";
 //import Act from "./act";
 //import SignupSection from "./signup";
@@ -219,7 +219,7 @@ function App({ d }) {
 
 	return (
 		<StaticRouter>
-			<Header
+			<HeaderSection
 				userState={userState}
 				handleLogOutClick={handleLogOutClick}
 				setLoginClicked={setLoginClicked}

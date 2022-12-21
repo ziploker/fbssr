@@ -1,4 +1,4 @@
-.HeaderWrapper {
+.headerWrapper {
 	position: relative;
 	display: grid;
 	grid-template-columns: minmax(100px, 200px) 1fr minmax(100px, max-content);
@@ -8,10 +8,9 @@
 	max-width: 3000px;
 	overflow: hidden;
 	grid-gap: 8px;
-	z-index: 52;
+	z-index: 51;
 }
 
-.h1 {
-	color: green;
-	font-size: 6em;
+.purple {
+	color: purple;
 }

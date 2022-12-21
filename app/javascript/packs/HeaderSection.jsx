@@ -2,7 +2,7 @@
 ///////////////////   IMPORTS  /////////////////////////
 ///////////////////////////////////////////////////////
 
-import styles from "./HeaderSection.module.scss";
+import myStyle from "./HeaderSection.module.css";
 
 import React, { useEffect, useState, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -200,10 +200,6 @@ import company_logo from "../../assets/images/company_logo.svg";
 function Header(props) {
 	console.log("==============Header===============");
 	console.log("==============Header Props===============", props);
-	console.log(
-		"==============Header Styles===============",
-		styles.HeaderWrapper
-	);
 
 	// if true, element reached the top of viewport, ready to be "sticky"
 	const [logoScrolled, setLogoScrolled] = React.useState(false);
@@ -359,9 +355,9 @@ function Header(props) {
 				hamburgerScrolled={hamburgerScrolled}
 				logoScrolled={logoScrolled}
 			/> */}
-
+			<h1 className={myStyle.purple}>tester</h1>
 			<section
-				className={styles.HeaderWrapper}
+				className={myStyle.HeaderWrapper}
 				// openSideMenu={props.openSideMenu}
 				// logoScrolled={logoScrolled}
 			>
@@ -421,7 +417,7 @@ function Header(props) {
 					/>
 				</HamburgerMenu> */}
 
-				<h1 className={styles.h1}>secTTTTTTTTTTionm</h1>
+				<h1 className={myStyle.h1}>secTTTTTTTTTTionm</h1>
 			</section>
 
 			{/* <Outter>

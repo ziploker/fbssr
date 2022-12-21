@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import style from "../bundles/HelloWorld/components/app.module.scss";
 //import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import axios from "axios";
-import HeaderSection from "./HeaderSection";
+import Header from "./HeaderSection";
 //import Home from "./home";
 //import Act from "./act";
 //import SignupSection from "./signup";
@@ -224,8 +224,6 @@ function App({ d }) {
 	return (
 		<BrowserRouter>
 			<ThemeProvider theme={theme}>
-				<h1 className={style.green}>MAIN</h1>
-				{/* 
 				<Header
 					userState={userState}
 					handleLogOutClick={handleLogOutClick}
@@ -240,7 +238,7 @@ function App({ d }) {
 					handleSuccessfulAuth={handleSuccessfulAuth}
 					setLoginClicked={setLoginClicked}
 					loginClicked={loginClicked}
-				/> */}
+				/>
 
 				{/* <Routes>
 				<Route

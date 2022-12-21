@@ -2,7 +2,7 @@
 ///////////////////   IMPORTS  /////////////////////////
 ///////////////////////////////////////////////////////
 
-import myStyle from "./HeaderSection.module.css";
+import myStyle from "./HeaderSection.module.scss";
 
 import React, { useEffect, useState, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -351,33 +351,40 @@ function Header(props) {
 	// } else {
 	return (
 		<>
-			{/* <TopBackgroundBar
+			<div
+				className={myStyle.topBackgroundBar}
 				hamburgerScrolled={hamburgerScrolled}
 				logoScrolled={logoScrolled}
-			/> */}
-			<h1 className={myStyle.purple}>tester</h1>
+			/>
+
 			<section
-				className={myStyle.HeaderWrapper}
-				// openSideMenu={props.openSideMenu}
-				// logoScrolled={logoScrolled}
+				className={myStyle.headerWrapper}
+				openSideMenu={props.openSideMenu}
+				logoScrolled={logoScrolled}
 			>
-				{/* <LogoText
+				<img
+					className={myStyle.logoText}
 					onClick={() => {
 						navigate("/");
 					}}
 					src={company_logo}
 					ref={logoTextRef}
 					logoScrolled={logoScrolled}
-				></LogoText>
+				></img>
 
 				<h1 style={{ display: "none" }}> {logoScrolled ? "TRUE" : "FALSE"} </h1>
 
-				<HeaderLeafImage
+				<img
+					className={myStyle.headerLeafImage}
 					src={headerLeaf}
 					longNavScrolled={longNavScrolled}
 					logoScrolled={logoScrolled}
-				></HeaderLeafImage>
-				<LongNav ref={longNavRef} longNavScrolled={longNavScrolled}>
+				></img>
+				<nav
+					className={myStyle.longNav}
+					ref={longNavRef}
+					longNavScrolled={longNavScrolled}
+				>
 					<ul>
 						<li key={0}>news</li>
 						<li key={1}>
@@ -408,16 +415,18 @@ function Header(props) {
 								  ]}{" "}
 						</li>
 					</ul>
-				</LongNav>
+				</nav>
 
-				<HamburgerMenu hamburgerScrolled={hamburgerScrolled} ref={hamburgerRef}>
+				<div
+					className={myStyle.hamburgerMenu}
+					hamburgerScrolled={hamburgerScrolled}
+					ref={hamburgerRef}
+				>
 					<Burger
 						openSideMenu={props.openSideMenu}
 						setOpenSideMenu={props.setOpenSideMenu}
 					/>
-				</HamburgerMenu> */}
-
-				<h1 className={myStyle.h1}>secTTTTTTTTTTionm</h1>
+				</div>
 			</section>
 
 			{/* <Outter>

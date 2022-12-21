@@ -1,17 +1,18 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { StaticRouter } from "react-router-dom/server";
+import style from "../bundles/HelloWorld/components/app.module.scss";
 //import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 //import axios from "axios";
-import HeaderSection from "./HeaderSection";
+import Header from "./HeaderSection";
 //import Home from "./home";
 //import Act from "./act";
 //import SignupSection from "./signup";
 
 //import Footer from "./footer";
-//import { ThemeProvider } from "styled-components";
-//import GlobalStyles from "./global";
+import styled, { ThemeProvider } from "styled-components";
+import GlobalStyles from "./global";
 //import Article from "./article";
 
 import Login from "./login";
@@ -80,162 +81,161 @@ function App({ d }) {
 	};
 
 	const handleLogOutClick = () => {
-		// axios
-		// 	.delete(
-		// 		"/logout",
-		// 		{
-		// 			data: {
-		// 				user: "user",
+		// 	axios
+		// 		.delete(
+		// 			"/logout",
+		// 			{
+		// 				data: {
+		// 					user: "user",
+		// 				},
 		// 			},
-		// 		},
-		// 		{ withCredentials: true }
-		// 	)
-		// 	.then((response) => {
-		// 		console.log(response);
-		// 		setUserState({
-		// 			...userState,
-		// 			loggedInStatus: "NOT_LOGGED_IN",
-		// 			user: {},
+		// 			{ withCredentials: true }
+		// 		)
+		// 		.then((response) => {
+		// 			console.log(response);
+		// 			//Server says logged_in but appState says not logged in
+		// 			//Server says logged_in but appState says not logged in
+		// 			setUserState({
+		// 				...userState,
+		// 				loggedInStatus: "NOT_LOGGED_IN",
+		// 				user: {},
+		// 			});
+		// 		})
+		// 		.catch((error) => {
+		// 			console.log("Logout? error", error);
 		// 		});
-		// 	})
-		// 	.catch((error) => {
-		// 		console.log("Logout? error", error);
-		// 	});
 	};
 
 	// reference for lookupSection to scroll to, when click on nav link
-	const LookupScrollToRef = useRef();
-	const LookupInputRef = useRef();
+	// const LookupScrollToRef = useRef();
+	// const LookupInputRef = useRef();
 
-	const section2ScrollToRef = useRef();
+	// const section2ScrollToRef = useRef();
 
-	// when click on nav link, scrolls to LookupScrollToRef
-	const scrollToRef = (ref) => {
-		console.log("in scrollToRef ");
-		console.log(ref);
-		console.log(LookupInputRef);
+	// // when click on nav link, scrolls to LookupScrollToRef
+	// const scrollToRef = (ref) => {
+	// 	console.log("in scrollToRef ");
+	// 	console.log(ref);
+	// 	console.log(LookupInputRef);
 
-		var scrollOptions = {
-			left: 0,
-			top: ref.current.offsetTop,
-			behavior: "smooth",
-		};
+	// 	var scrollOptions = {
+	// 		left: 0,
+	// 		top: ref.current.offsetTop,
+	// 		behavior: "smooth",
+	// 	};
 
-		window.scrollTo(scrollOptions);
-		//window.scrollTo(0, ref.current.offsetTop)
+	// 	//window.scrollTo(scrollOptions);
 
-		setOpenSideMenu(false);
-		setTimeout(function () {
-			LookupInputRef.current.focus();
-		}, 420);
-		//LookupInputRef.current.focus();
-	};
+	// 	setOpenSideMenu(false);
+	// 	setTimeout(function () {
+	// 		LookupInputRef.current.focus();
+	// 	}, 420);
+	// 	//LookupInputRef.current.focus();
+	// };
 
-	const scrollToRef2 = (ref) => {
-		console.log("IN SCROLLTOREF2");
-		console.log(ref);
+	// const scrollToRef2 = (ref) => {
+	// 	console.log("IN SCROLLTOREF2");
+	// 	console.log(ref);
 
-		var scrollOptions = {
-			left: 0,
-			top: ref.current.offsetTop,
-			behavior: "smooth",
-		};
+	// 	var scrollOptions = {
+	// 		left: 0,
+	// 		top: ref.current.offsetTop,
+	// 		behavior: "smooth",
+	// 	};
 
-		window.scrollTo(scrollOptions);
-
-		//window.scrollTo(0, ref.current.offsetTop)
-	};
+	// 	//window.scrollTo(scrollOptions);
+	// };
 
 	const executeScrollForLookupSection = useCallback(() => {
-		console.log("in executeScrollForLookupSection ");
-
-		scrollToRef(LookupScrollToRef);
-		setOpenSideMenu(false);
+		// 	console.log("in executeScrollForLookupSection ");
+		// 	scrollToRef(LookupScrollToRef);
+		// 	setOpenSideMenu(false);
 	});
 
 	const executeScrollForSection2 = useCallback(() => {
-		scrollToRef2(section2ScrollToRef);
-		setOpenSideMenu(false);
+		// 	scrollToRef2(section2ScrollToRef);
+		// 	setOpenSideMenu(false);
 	});
 
 	const executeScrollForLookupSectionTwo = () => {
-		scrollToRef2(section2ScrollToRef);
-		setOpenSideMenu(false);
+		// 	scrollToRef2(section2ScrollToRef);
+		// 	setOpenSideMenu(false);
 	};
 
-	useEffect(() => {
-		//const mode = process.env.NODE_ENV == "development" ? "http://127.0.0.1:3000" : "https://www.floiridablaze.io"
+	// useEffect(() => {
+	// 	//const mode = process.env.NODE_ENV == "development" ? "http://127.0.0.1:3000" : "https://www.floiridablaze.io"
 
-		console.log("==============APP useEffects===============");
-		if (current_user != null) {
-			console.log("currentUser exists, so bypass session logged_in call");
-			// setAppState({
-			//     ...appState,
-			//     loggedInStatus: "LOGGED_IN",
-			//     user: current_user,
-			//     emailStatus: current_user.email_confirmed == "true" ? "EMAIL_VERIFIED" : "EMAIL_NOT_VERIFIED"
-			// })
+	// 	console.log("==============APP useEffects===============");
+	// 	if (current_user != null) {
+	// 		console.log("currentUser exists, so bypass session logged_in call");
+	// 		// setAppState({
+	// 		//     ...appState,
+	// 		//     loggedInStatus: "LOGGED_IN",
+	// 		//     user: current_user,
+	// 		//     emailStatus: current_user.email_confirmed == "true" ? "EMAIL_VERIFIED" : "EMAIL_NOT_VERIFIED"
+	// 		// })
 
-			setUserState({
-				...userState,
-				loggedInStatus: "LOGGED_IN",
-				user: current_user,
-				emailStatus:
-					current_user.email_confirmed == "true"
-						? "EMAIL_VERIFIED"
-						: "EMAIL_NOT_VERIFIED",
-			});
-		} else {
-			// console.log("currentUser did not exist, so run logged_in call from server")
-			// axios.get("/logged_in", {withCredentials: true})
-			// .then(response => {
-			//     //Server says logged_in but appState says not logged in
-			//     setAppState({
-			//         ...appState,
-			//         loggedInStatus: response.data.logged_in && appState.loggedInStatus == "NOT_LOGGED_IN" ? "LOGGED_IN": "NOT_LOGGED_IN",
-			//         user: response.data.user,
-			//         emailStatus: response.data.user && response.data.user.email_confirmed == "true" ? "EMAIL_VERIFIED" : "EMAIL_NOT_VERIFIED"
-			//     })
-			//     //Server says not logged in but appState says logged_in
-			//     //}else if (!response.data.logged_in && appState.loggedInStatus == "LOGGED_IN"){
-			//     //    setAppState({
-			//     //        ...appState,
-			//     //        loggedInStatus: "NOT_LOGGED_IN",
-			//     //        user: {}
-			//     //    })
-			//     //    console.log("WTTFFF", "BBBBBBB")
-			//     //Check if email has been confirmed
-			//     //if (response.data.user && response.data.user.email_confirmed == true){
-			//     //    setAppState({
-			//     //        ...appState,
-			//   //          emailStatus: "EMAIL_VERIFIED"
-			//     //    })
-			//     //    console.log("WTTFFF", "cccccc")
-			//    // }
-			// })
-			// .catch(error => console.log("Logged in? error", error))
-		}
-	}, []);
+	// 		setUserState({
+	// 			...userState,
+	// 			loggedInStatus: "LOGGED_IN",
+	// 			user: current_user,
+	// 			emailStatus:
+	// 				current_user.email_confirmed == "true"
+	// 					? "EMAIL_VERIFIED"
+	// 					: "EMAIL_NOT_VERIFIED",
+	// 		});
+	// 	} else {
+	// 		// console.log("currentUser did not exist, so run logged_in call from server")
+	// 		// axios.get("/logged_in", {withCredentials: true})
+	// 		// .then(response => {
+	// 		//     //Server says logged_in but appState says not logged in
+	// 		//     setAppState({
+	// 		//         ...appState,
+	// 		//         loggedInStatus: response.data.logged_in && appState.loggedInStatus == "NOT_LOGGED_IN" ? "LOGGED_IN": "NOT_LOGGED_IN",
+	// 		//         user: response.data.user,
+	// 		//         emailStatus: response.data.user && response.data.user.email_confirmed == "true" ? "EMAIL_VERIFIED" : "EMAIL_NOT_VERIFIED"
+	// 		//     })
+	// 		//     //Server says not logged in but appState says logged_in
+	// 		//     //}else if (!response.data.logged_in && appState.loggedInStatus == "LOGGED_IN"){
+	// 		//     //    setAppState({
+	// 		//     //        ...appState,
+	// 		//     //        loggedInStatus: "NOT_LOGGED_IN",
+	// 		//     //        user: {}
+	// 		//     //    })
+	// 		//     //    console.log("WTTFFF", "BBBBBBB")
+	// 		//     //Check if email has been confirmed
+	// 		//     //if (response.data.user && response.data.user.email_confirmed == true){
+	// 		//     //    setAppState({
+	// 		//     //        ...appState,
+	// 		//   //          emailStatus: "EMAIL_VERIFIED"
+	// 		//     //    })
+	// 		//     //    console.log("WTTFFF", "cccccc")
+	// 		//    // }
+	// 		// })
+	// 		// .catch(error => console.log("Logged in? error", error))
+	// 	}
+	// }, []);
 
 	return (
 		<StaticRouter>
-			<HeaderSection
-				userState={userState}
-				handleLogOutClick={handleLogOutClick}
-				setLoginClicked={setLoginClicked}
-				openSideMenu={openSideMenu}
-				setOpenSideMenu={setOpenSideMenu}
-				executeScrollForSection2={executeScrollForSection2}
-				executeScrollForLookupSection={executeScrollForLookupSection}
-			/>
+			<ThemeProvider theme={theme}>
+				<Header
+					userState={userState}
+					handleLogOutClick={handleLogOutClick}
+					setLoginClicked={setLoginClicked}
+					openSideMenu={openSideMenu}
+					setOpenSideMenu={setOpenSideMenu}
+					executeScrollForSection2={executeScrollForSection2}
+					executeScrollForLookupSection={executeScrollForLookupSection}
+				/>
 
-			<Login
-				handleSuccessfulAuth={handleSuccessfulAuth}
-				setLoginClicked={setLoginClicked}
-				loginClicked={loginClicked}
-			/>
+				<Login
+					handleSuccessfulAuth={handleSuccessfulAuth}
+					setLoginClicked={setLoginClicked}
+					loginClicked={loginClicked}
+				/>
 
-			{/* <Routes>
+				{/* <Routes>
 				<Route
 					exact
 					path="/"
@@ -251,8 +251,7 @@ function App({ d }) {
 						/>
 					}
 				/>
-
-				<Route path="/forgot" element={<Forgot />} />
+				
 				<Route path="/resend" element={<Resend />} />
 				<Route exact path="/change_pw/:token" element={<Change />} />
 				<Route
@@ -274,7 +273,7 @@ function App({ d }) {
 				/>
 			</Routes> */}
 
-			{/* <PayPalScriptProvider
+				{/* <PayPalScriptProvider
 				options={{
 					"client-id":
 						//"ASxYc6NaKEnx3gEKnVzv60MvRjC2tM4F-CFZgepkJwnAL1Cr9c3MfgRtr9OCMqOa-egcSu3dEpee205c",
@@ -294,12 +293,13 @@ function App({ d }) {
 					executeScrollForLookupSectionTwo={executeScrollForLookupSectionTwo}
 				/>
 			</PayPalScriptProvider> */}
-			{/* <SignupSection
+				{/* <SignupSection
 				ref={{ section2ScrollToRef: section2ScrollToRef }}
 				handleSuccessfulAuth={handleSuccessfulAuth}
-			/> */}
-
-			{/* <Footer /> */}
+			/>
+			 */}
+				{/* <Footer /> */}
+			</ThemeProvider>
 		</StaticRouter>
 	);
 }

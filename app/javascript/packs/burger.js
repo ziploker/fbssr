@@ -1,7 +1,7 @@
 // Burger.js
 import React from "react";
 
-import myStyle from "./burger.module.scss";
+//import myStyle from "./burger.module.scss";
 
 const Burger = (props) => {
 	return (

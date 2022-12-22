@@ -2,12 +2,12 @@
 ///////////////////   IMPORTS  /////////////////////////
 ///////////////////////////////////////////////////////
 
-import myStyle from "./HeaderSection.module.scss";
+//import myStyle from "./HeaderSection.module.scss";
 
 import React, { useEffect, useState, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 //import useDocumentScrollThrottled from './useDocumentScrollThrottled.jsx'
-//import styled from "styled-components";
+import styled from "styled-components";
 import headerLeaf from "../../assets/images/headerLeafv2.png";
 //import headerLogo from '../../assets/images/logo.png'
 import Burger from "./burger";
@@ -18,181 +18,181 @@ import company_logo from "../../assets/images/company_logo.svg";
 //////////////   STYLED COMPONENTS  ///////////////////
 ///////////////////////////////////////////////////////
 
-// const HeaderWrapper = styled.div`
-//   position: relative;
-//   display: grid;
-//   grid-template-columns: minmax(100px, 200px) 1fr minmax(100px, max-content);
-//   grid-template-rows: 85px;
-//   grid-template-areas: "headerLogo . headerLeaf ";
-//   min-width: 100vw;
-//   max-width: 3000px;
-//   overflow: hidden;
-//   grid-gap: 8px;
-//   z-index: 51;
-// `;
+const HeaderWrapper = styled.div`
+	position: relative;
+	display: grid;
+	grid-template-columns: minmax(100px, 200px) 1fr minmax(100px, max-content);
+	grid-template-rows: 85px;
+	grid-template-areas: "headerLogo . headerLeaf ";
+	min-width: 100vw;
+	max-width: 3000px;
+	overflow: hidden;
+	grid-gap: 8px;
+	z-index: 51;
+`;
 
-// const LogoText = styled.img`
-// 	position: ${(props) => (props.logoScrolled ? "fixed" : "initial")};
-// 	top: ${(props) => (props.logoScrolled ? "4px" : "initial")};
-// 	//font-family: "Permanent Marker", cursive;
-// 	//font-style: normal;
-// 	//font-weight: normal;
-// 	//font-size: 22px;
-// 	//letter-spacing: -1px;
-// 	//color: #010101;
-// 	grid-area: headerLogo;
-// 	padding: 0 0 0 15px;
-// 	justify-self: start;
-// 	align-self: center;
-// 	width: ${(props) => (props.logoScrolled ? "100px" : "100%")};
-// 	cursor: pointer;
+const LogoText = styled.img`
+	position: ${(props) => (props.logoScrolled ? "fixed" : "initial")};
+	top: ${(props) => (props.logoScrolled ? "4px" : "initial")};
+	//font-family: "Permanent Marker", cursive;
+	//font-style: normal;
+	//font-weight: normal;
+	//font-size: 22px;
+	//letter-spacing: -1px;
+	//color: #010101;
+	grid-area: headerLogo;
+	padding: 0 0 0 15px;
+	justify-self: start;
+	align-self: center;
+	width: ${(props) => (props.logoScrolled ? "100px" : "100%")};
+	cursor: pointer;
 
-// 	z-index: 51;
+	z-index: 51;
 
-// 	span {
-// 		color: rgb(241, 203, 203);
-// 	}
-// `;
+	span {
+		color: rgb(241, 203, 203);
+	}
+`;
 
-// const HeaderLeafImage = styled.img`
-// 	@media only screen and (max-width: 500px) {
-// 		margin-right: -90px;
-// 	}
+const HeaderLeafImage = styled.img`
+	@media only screen and (max-width: 500px) {
+		margin-right: -90px;
+	}
 
-// 	@media only screen and (max-width: 400px) {
-// 		margin-right: -190px;
-// 	}
+	@media only screen and (max-width: 400px) {
+		margin-right: -190px;
+	}
 
-// 	@media only screen and (max-width: 305px) {
-// 		margin-right: -222px;
-// 	}
+	@media only screen and (max-width: 305px) {
+		margin-right: -222px;
+	}
 
-// 	@media only screen and (max-width: 265px) {
-// 		display: none;
-// 	}
+	@media only screen and (max-width: 265px) {
+		display: none;
+	}
 
-// 	min-width: 400px;
-// 	max-height: 100%;
-// 	max-width: 95%;
-// 	grid-area: headerLeaf;
-// 	justify-self: end;
-// 	align-self: center;
+	min-width: 400px;
+	max-height: 100%;
+	max-width: 95%;
+	grid-area: headerLeaf;
+	justify-self: end;
+	align-self: center;
 
-// 	/* opacity: ${(props) =>
-// 		props.hamburgerScrolled || props.longNavScrolled ? "0" : "1"}; */
+	/* opacity: ${(props) =>
+		props.hamburgerScrolled || props.longNavScrolled ? "0" : "1"}; */
 
-// 	//transition: all 0.2s linear;
-// `;
+	//transition: all 0.2s linear;
+`;
 
-// const LongNav = styled.nav`
-// 	@media only screen and (max-width: 500px) {
-// 		display: none;
-// 	}
+const LongNav = styled.nav`
+	@media only screen and (max-width: 500px) {
+		display: none;
+	}
 
-// 	grid-area: headerLeaf;
-// 	color: white;
-// 	align-self: center;
-// 	justify-self: end;
-// 	margin: 0 -25px;
-// 	display: flex;
-// 	position: ${(props) => (props.longNavScrolled ? "fixed" : "initial")};
-// 	top: ${(props) => (props.longNavScrolled ? "-3px" : "initial")};
-// 	color: ${(props) => (props.longNavScrolled ? "white" : "white")};
+	grid-area: headerLeaf;
+	color: white;
+	align-self: center;
+	justify-self: end;
+	margin: 0 -25px;
+	display: flex;
+	position: ${(props) => (props.longNavScrolled ? "fixed" : "initial")};
+	top: ${(props) => (props.longNavScrolled ? "-3px" : "initial")};
+	color: ${(props) => (props.longNavScrolled ? "white" : "white")};
 
-// 	ul {
-// 		list-style: none;
-// 		margin-right: 40px;
-// 		display: flex;
-// 		align-items: baseline;
-// 		color: inherit;
+	ul {
+		list-style: none;
+		margin-right: 40px;
+		display: flex;
+		align-items: baseline;
+		color: inherit;
 
-// 		li {
-// 			@media only screen and (max-width: 666px) {
-// 				padding: 0px 12px;
-// 			}
+		li {
+			@media only screen and (max-width: 666px) {
+				padding: 0px 12px;
+			}
 
-// 			display: inline-block;
-// 			padding: 0px 20px;
+			display: inline-block;
+			padding: 0px 20px;
 
-// 			font-weight: 500;
-// 			font-size: 16px;
-// 			line-height: 45px;
-// 			color: inherit;
-// 			text-decoration: none;
-// 			cursor: pointer;
-// 			&:hover {
-// 				color: rgb(241, 203, 203);
-// 			}
+			font-weight: 500;
+			font-size: 16px;
+			line-height: 45px;
+			color: inherit;
+			text-decoration: none;
+			cursor: pointer;
+			&:hover {
+				color: rgb(241, 203, 203);
+			}
 
-// 			a {
-// 				transition: all 0.3s ease 0s;
-// 				font-weight: 500;
-// 				font-size: 16px;
-// 				line-height: 45px;
-// 				color: inherit;
-// 			}
-// 		}
-// 	}
-// `;
+			a {
+				transition: all 0.3s ease 0s;
+				font-weight: 500;
+				font-size: 16px;
+				line-height: 45px;
+				color: inherit;
+			}
+		}
+	}
+`;
 
-// const Outter = styled.div`
-// 	width: 100%;
-// 	position: relative;
-// `;
+const Outter = styled.div`
+	width: 100%;
+	position: relative;
+`;
 
-// const HamburgerMenu = styled.div`
-// 	position: relative;
-// 	grid-area: 1/3/2/4;
-// 	justify-self: end;
-// 	align-self: center;
-// 	padding-right: 1em;
+const HamburgerMenu = styled.div`
+	position: relative;
+	grid-area: 1/3/2/4;
+	justify-self: end;
+	align-self: center;
+	padding-right: 1em;
 
-// 	@media only screen and (max-width: 500px) {
-// 		position: ${(props) => (props.hamburgerScrolled ? "fixed" : "initial")};
-// 		top: ${(props) => (props.hamburgerScrolled ? "7px" : "initial")};
-// 	}
+	@media only screen and (max-width: 500px) {
+		position: ${(props) => (props.hamburgerScrolled ? "fixed" : "initial")};
+		top: ${(props) => (props.hamburgerScrolled ? "7px" : "initial")};
+	}
 
-// 	button {
-// 		div {
-// 			background: white;
-// 			color: white;
+	button {
+		div {
+			background: white;
+			color: white;
 
-// 			@media only screen and (max-width: 266px) {
-// 				background: black;
-// 				color: black;
-// 			}
-// 		}
-// 	}
-// `;
+			@media only screen and (max-width: 266px) {
+				background: black;
+				color: black;
+			}
+		}
+	}
+`;
 
-// const TopBackgroundBar = styled.div`
-// 	position: ${(props) => (props.logoScrolled ? "fixed" : "fixed")};
-// 	opacity: ${(props) => (props.logoScrolled ? "1" : "0")};
-// 	top: 0;
-// 	width: 100%;
-// 	height: 40px;
-// 	background-color: black;
-// 	transition: all 0.2s linear;
-// 	z-index: 50;
-// 	-webkit-backface-visibility: hidden;
-// 	background: rgb(255, 255, 255);
-// 	background: -moz-linear-gradient(
-// 		90deg,
-// 		rgba(255, 255, 255, 0.8897758932674632) 38%,
-// 		rgba(0, 0, 0, 0.9009803750601804) 59%
-// 	);
-// 	background: -webkit-linear-gradient(
-// 		90deg,
-// 		rgba(255, 255, 255, 0.8897758932674632) 38%,
-// 		rgba(0, 0, 0, 0.9009803750601804) 59%
-// 	);
-// 	background: linear-gradient(
-// 		90deg,
-// 		rgba(255, 255, 255, 0.8897758932674632) 38%,
-// 		rgba(0, 0, 0, 0.9009803750601804) 59%
-// 	);
-// 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#000000",GradientType=1);
-// `;
+const TopBackgroundBar = styled.div`
+	position: ${(props) => (props.logoScrolled ? "fixed" : "fixed")};
+	opacity: ${(props) => (props.logoScrolled ? "1" : "0")};
+	top: 0;
+	width: 100%;
+	height: 40px;
+	background-color: black;
+	transition: all 0.2s linear;
+	z-index: 50;
+	-webkit-backface-visibility: hidden;
+	background: rgb(255, 255, 255);
+	background: -moz-linear-gradient(
+		90deg,
+		rgba(255, 255, 255, 0.8897758932674632) 38%,
+		rgba(0, 0, 0, 0.9009803750601804) 59%
+	);
+	background: -webkit-linear-gradient(
+		90deg,
+		rgba(255, 255, 255, 0.8897758932674632) 38%,
+		rgba(0, 0, 0, 0.9009803750601804) 59%
+	);
+	background: linear-gradient(
+		90deg,
+		rgba(255, 255, 255, 0.8897758932674632) 38%,
+		rgba(0, 0, 0, 0.9009803750601804) 59%
+	);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#000000",GradientType=1);
+`;
 
 ////////////////////////////////////////////////////////
 ///////////////   HEADER FUNCTION   ///////////////////
@@ -351,37 +351,37 @@ function Header(props) {
 	// } else {
 	return (
 		<>
-			<div
-				className={myStyle.topBackgroundBar}
+			<TopBackgroundBar
+				//className={myStyle.topBackgroundBar}
 				hamburgerScrolled={hamburgerScrolled}
 				logoScrolled={logoScrolled}
 			/>
 
-			<section
-				className={myStyle.headerWrapper}
+			<HeaderWrapper
+				//className={myStyle.headerWrapper}
 				openSideMenu={props.openSideMenu}
 				logoScrolled={logoScrolled}
 			>
-				<img
-					className={myStyle.logoText}
+				<LogoText
+					//className={myStyle.logoText}
 					onClick={() => {
 						navigate("/");
 					}}
 					src={company_logo}
 					ref={logoTextRef}
 					logoScrolled={logoScrolled}
-				></img>
+				></LogoText>
 
 				<h1 style={{ display: "none" }}> {logoScrolled ? "TRUE" : "FALSE"} </h1>
 
-				<img
-					className={myStyle.headerLeafImage}
+				<HeaderLeafImage
+					//className={myStyle.headerLeafImage}
 					src={headerLeaf}
 					longNavScrolled={longNavScrolled}
 					logoScrolled={logoScrolled}
-				></img>
-				<nav
-					className={myStyle.longNav}
+				></HeaderLeafImage>
+				<LongNav
+					//className={myStyle.longNav}
 					ref={longNavRef}
 					longNavScrolled={longNavScrolled}
 				>
@@ -415,10 +415,10 @@ function Header(props) {
 								  ]}{" "}
 						</li>
 					</ul>
-				</nav>
+				</LongNav>
 
-				<div
-					className={myStyle.hamburgerMenu}
+				<HamburgerMenu
+					//className={myStyle.hamburgerMenu}
 					hamburgerScrolled={hamburgerScrolled}
 					ref={hamburgerRef}
 				>
@@ -426,10 +426,10 @@ function Header(props) {
 						openSideMenu={props.openSideMenu}
 						setOpenSideMenu={props.setOpenSideMenu}
 					/>
-				</div>
-			</section>
+				</HamburgerMenu>
+			</HeaderWrapper>
 
-			{/* <Outter>
+			<Outter>
 				<SideMenu
 					//doSomething={doSomething}
 					openSideMenu={props.openSideMenu}
@@ -439,7 +439,7 @@ function Header(props) {
 					executeScrollForLookupSection={props.executeScrollForLookupSection}
 					executeScrollForSection2={props.executeScrollForSection2}
 				/>
-			</Outter> */}
+			</Outter>
 		</>
 	);
 }

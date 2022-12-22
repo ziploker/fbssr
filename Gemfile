@@ -3,6 +3,19 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 gem "sassc-rails"
+
+
+gem 'jwt'
+gem 'google-id-token'
+gem 'active_storage_validations'
+gem 'ancestry'
+gem 'mini_magick', '>= 4.9.5'
+
+gem 'httparty'
+gem 'hash_dot'
+gem "aws-sdk-s3", require: false
+
+gem 'mailgun-ruby', '~>1.2.3'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
 
